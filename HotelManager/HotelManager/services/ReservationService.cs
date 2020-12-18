@@ -15,7 +15,20 @@ namespace HotelManager.services
         }
         public bool ReserveForCustomer(Room room, List<Guest> guests, DateTime arrival, DateTime departure)
         {
-            return true;
+            
+            if (GetAvailableRooms(arrival, departure).Contains(room))
+            {
+                Reservation newReservation = new Reservation();
+                newReservation.Room = room;
+                newReservation.Guests = guests;
+                newReservation.Arrival = arrival;
+                newReservation.Departure = departure;
+
+                DataBase.AddReservation(newReservation);
+
+                return true;
+            }
+            return false;
         }
         public int GetReservaionCost(long reservationId)
         {
@@ -26,7 +39,6 @@ namespace HotelManager.services
 
             int price = 0;
             reservation.Guests.ForEach(guest => price += guest.IsChild ? childCost : cost);
-            int childCount = reservation.Guests.FindAll(guest => guest.IsChild).Count;
 
             return price;
         }
