@@ -1,0 +1,4 @@
+D:\SoftDev\GIT\DotNet\BME\HotelManager-BMEAppDev\HotelManager\HotelManager\obj\Debug\netcoreapp3.1\HotelManager.csprojAssemblyReference.cache
+D:\SoftDev\GIT\DotNet\BME\HotelManager-BMEAppDev\HotelManager\HotelManager\obj\Debug\netcoreapp3.1\HotelManager.AssemblyInfoInputs.cache
+D:\SoftDev\GIT\DotNet\BME\HotelManager-BMEAppDev\HotelManager\HotelManager\obj\Debug\netcoreapp3.1\HotelManager.AssemblyInfo.cs
+D:\SoftDev\GIT\DotNet\BME\HotelManager-BMEAppDev\HotelManager\HotelManager\obj\Debug\netcoreapp3.1\HotelManager.csproj.CoreCompileInputs.cache

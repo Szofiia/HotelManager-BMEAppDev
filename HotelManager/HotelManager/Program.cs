@@ -6,7 +6,8 @@ namespace HotelManager
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Hotel Reservation Manager");
+            Console.ReadKey();
         }
     }
 }
