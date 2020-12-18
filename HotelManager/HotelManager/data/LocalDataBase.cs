@@ -8,6 +8,7 @@ namespace HotelManager.data
 {
     public class LocalDataBase : IDataBase
     {
+        public int Cost;
         public int ChildCost;
         public List<Guest> Guests { get; set; }
         public List<Room> Rooms { get; set; }
@@ -63,6 +64,11 @@ namespace HotelManager.data
         public int GetChildCost()
         {
             return ChildCost;
+        }
+
+        public int GetCost()
+        {
+            return Cost;
         }
     }
 }

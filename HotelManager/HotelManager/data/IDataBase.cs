@@ -15,5 +15,6 @@ namespace HotelManager.data
         Reservation GetReservation(long reservationId);
         Room GetRoomByNumber(int number);
         int GetChildCost();
+        int GetCost();
     }
 }
