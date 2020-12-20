@@ -9,14 +9,34 @@ namespace HotelManager.services
     class ReservationService
     {
         public IDataBase DataBase { get; set; }
+        public ReservationService(LocalDataBase database) 
+        {
+            DataBase = database;
+        }
+
         public List<Room> GetAvailableRooms(DateTime arrival, DateTime departure)
         {
             return DataBase.GetAvailableRooms(arrival, departure);
         }
         public bool ReserveForCustomer(Room room, List<Guest> guests, DateTime arrival, DateTime departure)
         {
-            return true;
+            if (GetAvailableRooms(arrival, departure).Contains(room))
+            {
+                Reservation newReservation = new Reservation();
+                newReservation.Room = room;
+                newReservation.Guests = guests;
+                newReservation.Arrival = arrival;
+                newReservation.Departure = departure;
+
+                DataBase.AddReservation(newReservation);
+                DataBase.AddRoom(room);
+                guests.ForEach(guest => DataBase.AddGuest(guest));
+
+                return true;
+            }
+            return false;
         }
+
         public int GetReservaionCost(long reservationId)
         {
             int cost = DataBase.GetCost();
@@ -30,5 +50,15 @@ namespace HotelManager.services
 
             return price;
         }
+        public List<Reservation> GetReservations()
+        {
+            return DataBase.GetReservations();
+        }
+
+        public bool isRoomAvailabe(int roomNo) {
+            return DataBase.IsRoomAvailable(roomNo);
+        }
+
+
     }
 }

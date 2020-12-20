@@ -51,14 +51,23 @@ namespace HotelManager.data
             return Reservations.Find(res => res.Id == reservationId);
         }
 
+        public List<Reservation> GetReservations()
+        {
+            return Reservations;
+        }
+
         public List<Room> GetRooms()
         {
             return Rooms;
         }
 
-        public Room GetRoomByNumber(int number)
+        public bool IsRoomAvailable(int number)
         {
-            return Rooms.First(room => room.RoomNumber == number);
+            int roomIndex = Rooms.FindIndex(room => room.RoomNumber == number);
+            if (roomIndex > -1) {
+                return false;
+            };
+            return true;
         }
 
         public int GetChildCost()
@@ -69,6 +78,35 @@ namespace HotelManager.data
         public int GetCost()
         {
             return Cost;
+        }
+
+        public void PushDummyData() {
+            List<Guest> dummyGuests = new List<Guest>();
+            List<Room> dummyRooms = new List<Room>();
+            List <Reservation> dummyReservations = new List<Reservation>();
+
+            dummyGuests.Add(new Guest(0, "Steve", "Smith", "01.04.1975", false));
+            dummyGuests.Add(new Guest(1, "Liu", "Smith", "01.04.1978", false));
+            dummyGuests.Add(new Guest(2, "Jane", "Smith", "01.04.2008", true));
+
+            dummyRooms.Add(new Room(0, 100, new List<Reservation>()));
+
+            dummyReservations.Add(new Reservation(0, dummyGuests, new DateTime(2020, 12, 10), new DateTime(2020, 12, 14), dummyRooms[0]));
+
+            dummyRooms[0].Reservations.Add(dummyReservations[0]);
+
+            dummyGuests.Add(new Guest(3, "James", "Cook", "11.07.1980", false));
+            dummyGuests.Add(new Guest(4, "Peter", "Pan", "01.01.1901", true));
+            dummyGuests.Add(new Guest(5, "Wendy", "Smith", "05.05.2010", true));
+            
+            dummyRooms.Add(new Room(2, 101, new List<Reservation>()));
+            dummyRooms.Add(new Room(3, 102, new List<Reservation>()));
+            dummyRooms.Add(new Room(4, 103, new List<Reservation>()));
+
+
+            Guests = dummyGuests;
+            Rooms = dummyRooms;
+            Reservations = dummyReservations;
         }
     }
 }
