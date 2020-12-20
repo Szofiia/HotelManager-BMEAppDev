@@ -13,7 +13,8 @@ namespace HotelManager.data
         List<Room> GetAvailableRooms(DateTime arrival, DateTime departure);
         List<Room> GetRooms();
         Reservation GetReservation(long reservationId);
-        Room GetRoomByNumber(int number);
+        public List<Reservation> GetReservations();
+        bool IsRoomAvailable(int number);
         int GetChildCost();
         int GetCost();
     }
